@@ -27,11 +27,7 @@ namespace ClasesEjercicioPrueba.Repository
             return true; 
         }
 
-        public static List<Empleado> ObtenerEmpleados()
-        {
-            using var context = new ApplicationDbContext();
-            return context.Empleados.ToList();
-        }
+       
         public static Empleado BuscarPorEmail(string email)
         {
             using var context = new ApplicationDbContext();
