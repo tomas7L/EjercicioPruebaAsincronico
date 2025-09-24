@@ -122,11 +122,26 @@ static void Main(string[] args)
 
             case "5":
                 Console.Clear();
-
+                int TotalEmpleados = departamento.Empleados.Count;
+                Console.WriteLine($"Total de empleados: {TotalEmpleados}");
+                decimal SalarioPromedio = departamento.Empleados.Average(e => e.Salario);
+                Console.WriteLine($"Salario promedio: {SalarioPromedio}");
+                decimal SalarioMaximo = departamento.Empleados.Max(e => e.Salario);
+                Console.WriteLine($"Salario máximo: {SalarioMaximo}");
+                decimal SalarioMinimo = departamento.Empleados.Min(e => e.Salario);
+                Console.WriteLine($"Salario mínimo: {SalarioMinimo}");
+                var porDepartamento = departamento.Empleados
+                    .GroupBy(e => e.Equals(departamento.Id))
+                    .Select(g => new { DepartamentoId = g.Key, Cantidad = g.Count() })
+                    .ToList();
+                foreach (var grupo in porDepartamento)
+                {
+                    Console.WriteLine($"Departamento ID: {grupo.DepartamentoId}, Cantidad de empleados: {grupo.Cantidad}");
+                }
                 Console.WriteLine("Para volver al menu principal presione una tecla");
                 Console.ReadKey();
                 break;
-                
+ 
             case "6":
                 Console.Clear();
                 Console.WriteLine("Volviendo al menu principal ");
